@@ -1,0 +1,20 @@
+   - name: install Vanilla Ubuntu Vagrant instance and Nginx including creation of swap. 
+     hosts: web 
+     connection: local
+     gather_facts: false
+     vars_files:
+      -  /vagrant/vars/vars.yml
+      -  /vagrant/settings/vgt.settings.yml
+
+     tasks:
+
+      - include: /vagrant/ansible/tasks/swap.yml
+
+      - name: Installs nginx web server
+        apt: pkg=nginx state=installed update_cache=true
+        notify:
+          - start nginx
+
+     handlers:
+       - name: start nginx
+         service: name=nginx state=started

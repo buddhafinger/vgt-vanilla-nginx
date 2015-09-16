@@ -1,0 +1,14 @@
+#YAML settings file - set vagrant config / spec including port forwarding and bridge device.  
+#Note: This file is also called by the main ansi-ts3.yml for things the like swap recipe which is included as a task, may consolidate in the future.
+
+  name: "vgt-vanilla"
+  box: "ubuntu/trusty64"
+  mem: "256"
+  vcpu: "1"
+  swap: "1G"
+#  ip:  "192.168.0.66"
+  fwdport:
+   host: 8080 
+   guest: 80 
+#  bridge_int: "en0: Wifi (AirPort)"
+  bootstrap: "scripts/bootstrap.sh"
